@@ -24,6 +24,17 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import firebase from 'react-native-firebase';
+
+firebase
+  .auth()
+  .signInAnonymously()
+  .then(credential => {
+    if (credential) {
+      console.log('default app user ->', credential.user.toJSON());
+    }
+  });
+
 const App = () => {
   return (
     <Fragment>

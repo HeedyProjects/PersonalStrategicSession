@@ -28,6 +28,7 @@ target 'YouCanDoIt' do
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
   pod 'Firebase/Core'
+  pod 'Firebase/Auth'
   pod 'Firebase/Messaging'
   pod 'Firebase/Analytics'
   
