@@ -31,6 +31,7 @@ target 'YouCanDoIt' do
   pod 'Firebase/Auth'
   pod 'Firebase/Messaging'
   pod 'Firebase/Analytics'
+  pod 'Firebase/Firestore'
   
   target 'YouCanDoItTests' do
     inherit! :search_paths
