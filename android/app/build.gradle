@@ -128,7 +128,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.youcandoit"
+        applicationId "com.heedy.youcandoit"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

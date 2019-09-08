@@ -1,4 +1,4 @@
-package com.youcandoit;
+package com.heedy.youcandoit;
 
 import com.facebook.react.ReactActivity;
 
