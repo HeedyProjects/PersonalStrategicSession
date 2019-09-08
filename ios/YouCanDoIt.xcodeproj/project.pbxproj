@@ -20,6 +20,7 @@
 		631790BB01709B6B4E5D1404 /* libPods-YouCanDoIt-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5198C56501C9AFAE76C82847 /* libPods-YouCanDoIt-tvOSTests.a */; };
 		72EC7459FB09422CEBA00B23 /* libPods-YouCanDoItTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A0E7D74B2A2FF3BBCD3D1600 /* libPods-YouCanDoItTests.a */; };
 		BA9F89077A996F309D3D925F /* libPods-YouCanDoIt-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AF20E944F812016035470A3 /* libPods-YouCanDoIt-tvOS.a */; };
+		FF0909312324E89B007493D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF0909302324E89B007493D1 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		A0E7D74B2A2FF3BBCD3D1600 /* libPods-YouCanDoItTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YouCanDoItTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		FF0909302324E89B007493D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 		13B07FAE1A68108700A75B9A /* YouCanDoIt */ = {
 			isa = PBXGroup;
 			children = (
+				FF0909302324E89B007493D1 /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -194,7 +197,6 @@
 				8A293F020445FB64E77ACA12 /* Pods-YouCanDoItTests.debug.xcconfig */,
 				99DC509DE94A94CE0310007D /* Pods-YouCanDoItTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -308,6 +310,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -338,6 +341,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				FF0909312324E89B007493D1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -635,7 +639,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.heedy.youcandoit;
 				PRODUCT_NAME = YouCanDoIt;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -654,7 +658,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.heedy.youcandoit;
 				PRODUCT_NAME = YouCanDoIt;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "910718426089",
+    "firebase_url": "https://youcandoit-4cce2.firebaseio.com",
+    "project_id": "youcandoit-4cce2",
+    "storage_bucket": "youcandoit-4cce2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:910718426089:android:a6b37f9db838e784a20978",
+        "android_client_info": {
+          "package_name": "com.heedy.youcandoit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "910718426089-p00v7ltlvbfnsj06akg71irneapsmqjd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoZvXT1P7KnE15ZG7sWQJ6W6twJFBQvy0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "910718426089-p00v7ltlvbfnsj06akg71irneapsmqjd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "910718426089-7v570hktpsok9vsgbdm5mkq91jhfptcq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.heedy.youcandoit"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
