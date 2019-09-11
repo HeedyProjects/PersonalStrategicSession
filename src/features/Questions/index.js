@@ -14,7 +14,7 @@ import {
 import {ProgressBar} from './components/ProgressBar';
 import {StepHeader} from './components/StepHeader';
 import {FullWidthButton} from './components/FullWidthButton';
-import {StepInfo} from './components/StepInfo';
+import StepInfo from './components/StepInfo';
 
 import {styles} from './styles';
 // import {stringToInteger, integerToString} from '../../utils/common';

@@ -1,36 +1,61 @@
-import React from 'react';
-import {View, Text} from 'react-native';
+import React, {Component} from 'react';
+import {View, Text, Alert} from 'react-native';
+import {connect} from 'react-redux';
 
 import {styles} from './styles';
+import {getLocalizedStrings} from '../../../../localization';
+import {LOCALIZE_CATEGORIES} from '../../../../localization/const';
 
-import { getLocalizedStrings } from '../../../../localization';
-import { LOCALIZE_CATEGORIES } from '../../../../localization/const';
 
-const data = [
-  { title: '', body: '' },
-  { title: 'Укажите ваш пол', body: 'У женщин и мужчин разный метаболизм, поэтому нам важно знать это.' },
-  { title: 'Сколько вам лет?', body: 'Возраст влияет на то, как протекает обмен веществ' },
-  { title: 'Укажите свой рост', body: 'Это поможет нам подобрать для вас правильный план питания.' },
-  { title: 'Укажите свой вес', body: 'Запишите свой вес сейчас — и совсем скоро вы увидите, как он изменится!' },
-  { title: 'Сколько вы хотите весить?', body: 'Ставьте смелые цели! А мы поможем их добиться.' },
-  { title: 'Что вам помогало худеть раньше?', body: '' },
-  { title: 'Как вы привыкли питаться?', body: '' }
-];
+class StepInfo extends Component {
+  state = {
+    data: [{title: '', body: ''}],
+  };
 
-export const StepInfo = ({ step }) => {
-  const { title, body } = data[step];
-  return (
-    <View style={styles.mainVew}>
-      <View style={styles.subView}>
-        <Text style={styles.firstText}>
-          {title}
-        </Text>
+  componentDidMount() {
+    const localization = getLocalizedStrings(
+      this.props.language,
+      LOCALIZE_CATEGORIES.problemSteps,
+    );
+
+    const data = [
+      {title: '', body: ''},
+      {title: localization.step1Header, body: localization.step1Title},
+      {title: localization.step2Header, body: localization.step2Title},
+      {title: localization.step3Header, body: localization.step3Title},
+      {title: localization.step4Header, body: localization.step4Title},
+      {title: localization.step5Header, body: localization.step5Title},
+    ];
+    this.setState({data});
+  }
+
+  render() {
+    const {step} = this.props;
+    const {data} = this.state;
+    if (!data[step]) {
+      return false;
+    }
+    const {title, body} = data[step];
+    return (
+      <View style={styles.mainVew}>
+        <View style={styles.subView}>
+          <Text style={styles.firstText}>{title}</Text>
+        </View>
+        <View>
+          <Text style={styles.secondText}>{body}</Text>
+        </View>
       </View>
-      <View>
-        <Text style={styles.secondText}>
-          {body}
-        </Text>
-      </View>
-    </View>
-  );
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    language: state.language.currentLanguage,
+  };
 };
+
+export default connect(
+  mapStateToProps,
+  null,
+)(StepInfo);

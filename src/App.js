@@ -1,35 +1,21 @@
 import React, {Component} from 'react';
-import {SafeAreaView} from 'react-native';
+import {Provider} from 'react-redux';
 
-import firebase from 'react-native-firebase';
-
-import Questions from './features/Questions';
-import {GREEN_COLOR} from './utils/Colors';
+import {store} from './store';
+import Setup from './Setup';
+import {sendAnalyticEvent} from './services/Analytics';
+import {ANALYTIC_EVENT} from './services/Analytics/const';
 
 class App extends Component {
-  constructor() {
-    super();
-    this.ref = firebase.firestore().collection('sessions');
-    firebase
-      .auth()
-      .signInAnonymously()
-      .then(credential => {
-        if (credential) {
-          console.log('default app user ->', credential.user.toJSON());
-          this.ref.doc(credential.user.uid).set({
-            userUid: credential.user.uid,
-          });
-        }
-      });
+  async componentDidMount() {
+    sendAnalyticEvent(ANALYTIC_EVENT.launchApp);
   }
 
   render() {
     return (
-      <SafeAreaView
-        style={{ flex: 1, backgroundColor: GREEN_COLOR }}
-        forceInset={{bottom: 'never'}}>
-        <Questions />
-      </SafeAreaView>
+      <Provider store={store}>
+        <Setup />
+      </Provider>
     );
   }
 }

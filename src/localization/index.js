@@ -9,7 +9,7 @@ const LocalizedStrings = {
       from: 'from',
     },
     problemSteps: {
-      step1Header: 'What do you want to achieve? What problem you want to compete?',
+      step1Header: 'What do you want to achieve?\nWhat problem you want to compete?',
       step1Title: 'Hello! Your journey starts here. Don’t hesitate to start right now. It will take just few minutes.',
       step2Header: 'What time and week day will it be easy for you to work on this goal/problem?',
       step2Title: 'It will be great when you will achieve this. I hope we will celebrate it together 😉 Start your strategic session right now. Set up time for your session.',
