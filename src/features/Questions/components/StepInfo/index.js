@@ -3,6 +3,9 @@ import {View, Text} from 'react-native';
 
 import {styles} from './styles';
 
+import { getLocalizedStrings } from '../../../../localization';
+import { LOCALIZE_CATEGORIES } from '../../../../localization/const';
+
 const data = [
   { title: '', body: '' },
   { title: 'Укажите ваш пол', body: 'У женщин и мужчин разный метаболизм, поэтому нам важно знать это.' },

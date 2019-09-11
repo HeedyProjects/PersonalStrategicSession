@@ -1,25 +1,10 @@
-import React, { Fragment, Component } from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
-
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import React, {Component} from 'react';
+import {SafeAreaView} from 'react-native';
 
 import firebase from 'react-native-firebase';
 
-import Questions from './src/features/Questions';
-import {GREEN_COLOR} from './src/utils/Colors';
+import Questions from './features/Questions';
+import {GREEN_COLOR} from './utils/Colors';
 
 class App extends Component {
   constructor() {
