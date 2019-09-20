@@ -6,7 +6,6 @@ import {styles} from './styles';
 import {getLocalizedStrings} from '../../../../localization';
 import {LOCALIZE_CATEGORIES} from '../../../../localization/const';
 
-
 class StepInfo extends Component {
   state = {
     data: [{title: '', body: ''}],

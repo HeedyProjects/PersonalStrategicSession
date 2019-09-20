@@ -5,9 +5,9 @@ import {connect} from 'react-redux';
 import firebase from 'react-native-firebase';
 import {getLocales} from 'react-native-localize';
 
-import Questions from './features/Questions';
 import {GREEN_COLOR} from './utils/Colors';
 import {setLanguage} from './reducers/language.duck';
+import AppNavigator from './navigation';
 
 class Setup extends Component {
   constructor() {
@@ -37,7 +37,11 @@ class Setup extends Component {
       <SafeAreaView
         style={{flex: 1, backgroundColor: GREEN_COLOR}}
         forceInset={{bottom: 'never'}}>
-        <Questions />
+        <AppNavigator
+          ref={nav => {
+            this.navigator = nav;
+          }}
+        />
       </SafeAreaView>
     );
   }
