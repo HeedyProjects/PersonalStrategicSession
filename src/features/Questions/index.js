@@ -8,8 +8,7 @@ import {
   Keyboard,
   Platform,
 } from 'react-native';
-// import connect from 'react-redux/es/connect/connect';
-// import { bindActionCreators } from 'redux';
+import {connect} from 'react-redux';
 
 import {ProgressBar} from './components/ProgressBar';
 import {StepHeader} from './components/StepHeader';
@@ -27,7 +26,7 @@ import {styles} from './styles';
 
 const {width} = Dimensions.get('window');
 
-const questionnairePagesCount = 15;
+const questionnairePagesCount = 6;
 
 class Questions extends Component {
   constructor(props) {
@@ -84,12 +83,20 @@ class Questions extends Component {
 
   goBack = () => {
     const {step} = this.state;
-    this.setState(() => ({step: step - 1, value: null}));
+    if (step > 1) {
+      this.setState(() => ({step: step - 1, value: null}));
+    } else {
+      this.props.navigation.navigate('StartScreen');
+    }
   };
 
   goNext = () => {
     const {step} = this.state;
-    this.setState(() => ({step: step + 1, value: null}));
+    if (step < questionnairePagesCount - 1) {
+      this.setState(() => ({step: step + 1, value: null}));
+    } else {
+      this.props.navigation.navigate('ProblemStepResult');
+    }
   };
 
   checkValuesForUnlockButton = obj => {
@@ -171,10 +178,13 @@ class Questions extends Component {
   }
 }
 
-// const mapDispatchToProps = dispatch => ({
-//   actions: bindActionCreators({ updateQuestionnaire }, dispatch)
-// });
+const mapStateToProps = state => {
+  return {
+    sessionMode: state.sessions.sessionMode,
+  };
+};
 
-// export default connect(null, mapDispatchToProps)(Questionnaire);
-
-export default Questions;
+export default connect(
+  mapStateToProps,
+  null,
+)(Questions);
