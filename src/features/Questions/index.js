@@ -41,34 +41,34 @@ class Questions extends Component {
     };
   }
 
-  // componentWillMount() {
-  //   StatusBar.setHidden(true, null);
-  //   if (Platform.OS === 'ios') {
-  //     Keyboard.addListener('keyboardWillShow', this.onKeyboardShow);
-  //     Keyboard.addListener('keyboardWillHide', this.onKeyboardHide);
-  //   } else {
-  //     Keyboard.addListener('keyboardDidShow', this.onKeyboardShow);
-  //     Keyboard.addListener('keyboardDidHide', this.onKeyboardHide);
-  //   }
-  // }
+  componentWillMount() {
+    //StatusBar.setHidden(true, null);
+    if (Platform.OS === 'ios') {
+      Keyboard.addListener('keyboardWillShow', this.onKeyboardShow);
+      Keyboard.addListener('keyboardWillHide', this.onKeyboardHide);
+    } else {
+      Keyboard.addListener('keyboardDidShow', this.onKeyboardShow);
+      Keyboard.addListener('keyboardDidHide', this.onKeyboardHide);
+    }
+  }
 
-  // componentWillUnmount() {
-  //   if (Platform.OS === 'ios') {
-  //     Keyboard.removeListener('keyboardWillShow', this.onKeyboardShow);
-  //     Keyboard.removeListener('keyboardWillHide', this.onKeyboardHide);
-  //   } else {
-  //     Keyboard.removeListener('keyboardDidShow', this.onKeyboardShow);
-  //     Keyboard.removeListener('keyboardDidHide', this.onKeyboardHide);
-  //   }
-  // }
+  componentWillUnmount() {
+    if (Platform.OS === 'ios') {
+      Keyboard.removeListener('keyboardWillShow', this.onKeyboardShow);
+      Keyboard.removeListener('keyboardWillHide', this.onKeyboardHide);
+    } else {
+      Keyboard.removeListener('keyboardDidShow', this.onKeyboardShow);
+      Keyboard.removeListener('keyboardDidHide', this.onKeyboardHide);
+    }
+  }
 
-  // onKeyboardShow = (event) => {
-  //   this.setState({ keyboardHeight: event.endCoordinates.height });
-  // };
+  onKeyboardShow = event => {
+    this.setState({keyboardHeight: event.endCoordinates.height - 35});
+  };
 
-  // onKeyboardHide = () => {
-  //   this.setState({ keyboardHeight: 0 });
-  // };
+  onKeyboardHide = () => {
+    this.setState({keyboardHeight: 0});
+  };
 
   // onValueChange = (value) => {
   //   const { step } = this.state;
@@ -120,10 +120,11 @@ class Questions extends Component {
   };
 
   renderInputString() {
-    const {value, measure} = this.state;
+    const {value, measure, keyboardHeight} = this.state;
     return (
-      <View style={styles.questionnaireView}>
+      <View style={[styles.questionnaireView, {marginBottom: 60 + keyboardHeight}]}>
         <TextInput
+          multiline
           ref={ref => {
             this.editRef = ref;
           }}
@@ -132,7 +133,6 @@ class Questions extends Component {
           onChangeText={this.onValueChange}
           value={value}
           underlineColorAndroid="rgba(0,0,0,0)"
-          keyboardType={Platform.OS === 'ios' ? 'number-pad' : 'numeric'}
         />
         <View style={styles.questionnaireInputView}>
           <Text style={styles.questionnaireInputViewText}>{measure}</Text>
