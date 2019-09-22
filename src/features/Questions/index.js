@@ -25,7 +25,7 @@ class Questions extends Component {
     super(props);
     this.editRef = null;
     this.state = {
-      value: null,
+      answer: null,
       keyboardHeight: 0,
       step: 1,
       measure: null,
@@ -74,7 +74,8 @@ class Questions extends Component {
   goBack = () => {
     const {step} = this.state;
     if (step > 1) {
-      this.setState(() => ({step: step - 1, value: null}));
+      this.setState({answer: null});
+      this.setState({step: step - 1});
     } else {
       this.props.navigation.navigate('StartScreen');
     }
@@ -83,7 +84,7 @@ class Questions extends Component {
   goNext = () => {
     const {step, questionsCount} = this.state;
     if (step < questionsCount - 1) {
-      this.setState(() => ({step: step + 1, value: null}));
+      this.setState(() => ({step: step + 1, answer: null}));
     } else {
       this.props.navigation.navigate('StepResult');
     }
@@ -95,8 +96,12 @@ class Questions extends Component {
     return result;
   };
 
+  onValueChange = text => {
+    this.setState({answer: text});
+  };
+
   renderInputString() {
-    const {value, measure, keyboardHeight} = this.state;
+    const {answer, measure, keyboardHeight} = this.state;
     return (
       <View style={[styles.questionnaireView, {marginBottom: 60 + keyboardHeight}]}>
         <TextInput
@@ -107,7 +112,7 @@ class Questions extends Component {
           style={styles.questionnaireInputTextInput}
           autoFocus
           onChangeText={this.onValueChange}
-          value={value}
+          value={answer}
           underlineColorAndroid="rgba(0,0,0,0)"
         />
         <View style={styles.questionnaireInputView}>
