@@ -2,13 +2,13 @@ import {createSwitchNavigator} from 'react-navigation';
 
 import StartScreen from '../../features/StartScreen';
 import Questions from '../../features/Questions';
-import ProblemStepResult from '../../features/ProblemStepResult';
+import StepResult from '../../features/StepResult';
 
 const MainNavigator = createSwitchNavigator(
   {
     StartScreen: {screen: StartScreen},
     Questions: {screen: Questions},
-    ProblemStepResult: {screen: ProblemStepResult},
+    StepResult: {screen: StepResult},
   },
   {
     initialRoute: 'StartScreen',

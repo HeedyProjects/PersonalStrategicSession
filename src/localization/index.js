@@ -3,6 +3,7 @@ const LocalizedStrings = {
     common: {
       next: 'Next',
       ok: 'Ok',
+      stub: 'We will add this feature next time',
     },
     startScreen: {
       helloText:
@@ -40,11 +41,51 @@ const LocalizedStrings = {
       endTitle:
         'We congratulate you for finishing the first part of this strategic session! 🎉/nNext part - Define the future',
     },
+    futureSteps: {
+      step1Header:
+        'Imaging how will the future look when you achieve your goal?',
+      step1Title:
+        'Visualize it in your head. Write here as many as you can about it. Use adjectives.',
+      step2Header: 'What do you want to archive?',
+      step2Title:
+        'One more time, in one or two sentences. What is the idea, that you want to realize?',
+      step3Header: 'What do you need to do at the beginning?',
+      step3Title: 'What is the most important thing here? ',
+      step4Header: 'Why will I manage to do it?',
+      step4Title:
+        'What are the good sides I have that will help me? Even if you only once help your grandma, you can write it here :) Relax and remember your good features.',
+      step5Header:
+        'Which good opportunities do you have around you or some that you just hear about?',
+      step5Title: '',
+      step6Header: 'What are the risks that you have?',
+      step6Title:
+        'Write it here just to prepare yourself. Don’t be afraid too much, please :) We are here to help, don’t worry 😉',
+      step7Header:
+        'Which good opportunities do you have around you or some that you just hear about?',
+      step7Title: 'What are the main components of the result?',
+      endTitle:
+        'We congratulate you for finishing the second part of this strategic session! 🎉/nNext part - Schedule the plan',
+    },
+    planSteps: {
+      step1Header: 'When you want to achieve main parts of your result?',
+      step1Title:
+        'Write here some milestones. Just let it go. Don’t think how you will manage to do it. Think like a boss: define what you want, and your employees will think how to do it. Or, in your case, the universe will do it for you 😉',
+      step2Header: 'What is needed to be done to get your desired result?',
+      step2Title:
+        'One more time think like a boss. Write here the activities that needed to be done on the way to your result',
+      step3Header: 'What are the main activities?',
+      step3Title: 'Without which of them the result never been achievable?',
+      endTitle:
+        'Great job!! You did a lot of work!\nWrite here your email. We will send your whole  plan and will remember every date there 🙂😉\nIf you will stuck somewhere, just write to us. We believe in you!',
+      scheduleTitle:
+        'Do you want to set some notifications, that will help you not forget about your goal?',
+    },
   },
   ru: {
     common: {
       next: 'Далее',
       ok: 'Ok',
+      stub: 'Мы добавим эту возможность позже',
     },
     startScreen: {
       helloText:
@@ -81,6 +122,45 @@ const LocalizedStrings = {
         'Or even make your problem stronger? What you will stop doing?',
       endTitle:
         'We congratulate you for finishing the first part of this strategic session! 🎉/nNext part - Define the future',
+    },
+    futureSteps: {
+      step1Header:
+        'Imaging how will the future look when you achieve your goal?',
+      step1Title:
+        'Visualize it in your head. Write here as many as you can about it. Use adjectives.',
+      step2Header: 'What do you want to archive?',
+      step2Title:
+        'One more time, in one or two sentences. What is the idea, that you want to realize?',
+      step3Header: 'What do you need to do at the beginning?',
+      step3Title: 'What is the most important thing here? ',
+      step4Header: 'Why will I manage to do it?',
+      step4Title:
+        'What are the good sides I have that will help me? Even if you only once help your grandma, you can write it here :) Relax and remember your good features.',
+      step5Header:
+        'Which good opportunities do you have around you or some that you just hear about?',
+      step5Title: '',
+      step6Header: 'What are the risks that you have?',
+      step6Title:
+        'Write it here just to prepare yourself. Don’t be afraid too much, please :) We are here to help, don’t worry 😉',
+      step7Header:
+        'Which good opportunities do you have around you or some that you just hear about?',
+      step7Title: 'What are the main components of the result?',
+      endTitle:
+        'We congratulate you for finishing the second part of this strategic session! 🎉/nNext part - Schedule the plan',
+    },
+    planSteps: {
+      step1Header: 'When you want to achieve main parts of your result?',
+      step1Title:
+        'Write here some milestones. Just let it go. Don’t think how you will manage to do it. Think like a boss: define what you want, and your employees will think how to do it. Or, in your case, the universe will do it for you 😉',
+      step2Header: 'What is needed to be done to get your desired result?',
+      step2Title:
+        'One more time think like a boss. Write here the activities that needed to be done on the way to your result',
+      step3Header: 'What are the main activities?',
+      step3Title: 'Without which of them the result never been achievable?',
+      endTitle:
+        'Great job!! You did a lot of work!\nWrite here your email. We will send your whole  plan and will remember every date there 🙂😉\nIf you will stuck somewhere, just write to us. We believe in you!',
+      scheduleTitle:
+        'Do you want to set some notifications, that will help you not forget about your goal?',
     },
   },
 };

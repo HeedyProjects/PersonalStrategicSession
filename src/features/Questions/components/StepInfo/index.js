@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Alert} from 'react-native';
+import {View, Text} from 'react-native';
 import {connect} from 'react-redux';
 
 import {styles} from './styles';
@@ -13,11 +13,29 @@ class StepInfo extends Component {
   };
 
   componentDidMount() {
+    const problemMode = this.props.sessionMode === SESSION_MODE.problem;
+    const data = this.getQuestionsByPhase(this.props.phase, problemMode);
+    this.setState({data});
+  }
+
+  getQuestionsByPhase = (phase, problemMode) => {
+    switch (phase) {
+      case 0:
+        return this.getFirstPhaseQuestions(problemMode);
+      case 1:
+        return this.getSecondPhaseQuestions();
+      case 2:
+        return this.getThirdPhaseQuestions();
+      default:
+        return this.getFirstPhaseQuestions(problemMode);
+    }
+  };
+
+  getFirstPhaseQuestions = problemMode => {
     const localization = getLocalizedStrings(
       this.props.language,
       LOCALIZE_CATEGORIES.problemSteps,
     );
-    const problemMode = this.props.sessionMode === SESSION_MODE.problem;
     const data = [
       {title: '', body: ''},
       {
@@ -41,8 +59,40 @@ class StepInfo extends Component {
       },
       {title: localization.step5Header, body: localization.step5Title},
     ];
-    this.setState({data});
-  }
+    return data;
+  };
+
+  getSecondPhaseQuestions = () => {
+    const localization = getLocalizedStrings(
+      this.props.language,
+      LOCALIZE_CATEGORIES.futureSteps,
+    );
+    const data = [
+      {title: '', body: ''},
+      {title: localization.step1Header, body: localization.step1Title},
+      {title: localization.step2Header, body: localization.step2Title},
+      {title: localization.step3Header, body: localization.step3Title},
+      {title: localization.step4Header, body: localization.step4Title},
+      {title: localization.step5Header, body: localization.step5Title},
+      {title: localization.step6Header, body: localization.step6Title},
+      {title: localization.step7Header, body: localization.step7Title},
+    ];
+    return data;
+  };
+
+  getThirdPhaseQuestions = () => {
+    const localization = getLocalizedStrings(
+      this.props.language,
+      LOCALIZE_CATEGORIES.planSteps,
+    );
+    const data = [
+      {title: '', body: ''},
+      {title: localization.step1Header, body: localization.step1Title},
+      {title: localization.step2Header, body: localization.step2Title},
+      {title: localization.step3Header, body: localization.step3Title},
+    ];
+    return data;
+  };
 
   render() {
     const {step} = this.props;
@@ -68,6 +118,7 @@ const mapStateToProps = state => {
   return {
     language: state.language.currentLanguage,
     sessionMode: state.sessions.sessionMode,
+    phase: state.sessions.phase,
   };
 };
 

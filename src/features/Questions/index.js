@@ -3,7 +3,6 @@ import {
   View,
   Text,
   TextInput,
-  StatusBar,
   Dimensions,
   Keyboard,
   Platform,
@@ -16,13 +15,6 @@ import {FullWidthButton} from './components/FullWidthButton';
 import StepInfo from './components/StepInfo';
 
 import {styles} from './styles';
-// import {stringToInteger, integerToString} from '../../utils/common';
-// import { Analytics, Events } from '../../utils/Analytics';
-// import { navigate } from '../../services/navigation';
-//import { updateQuestionnaire } from './redux/actions';
-// import {
-//   Recommendations, HabitQuestions, HelpQuestions, Steps
-// } from './const';
 
 const {width} = Dimensions.get('window');
 
@@ -41,8 +33,7 @@ class Questions extends Component {
     };
   }
 
-  componentWillMount() {
-    //StatusBar.setHidden(true, null);
+  componentDidMount() {
     if (Platform.OS === 'ios') {
       Keyboard.addListener('keyboardWillShow', this.onKeyboardShow);
       Keyboard.addListener('keyboardWillHide', this.onKeyboardHide);
@@ -52,7 +43,7 @@ class Questions extends Component {
     }
   }
 
-  componentWillUnmount() {
+  componentDidUnmount() {
     if (Platform.OS === 'ios') {
       Keyboard.removeListener('keyboardWillShow', this.onKeyboardShow);
       Keyboard.removeListener('keyboardWillHide', this.onKeyboardHide);
@@ -70,17 +61,6 @@ class Questions extends Component {
     this.setState({keyboardHeight: 0});
   };
 
-  // onValueChange = (value) => {
-  //   const { step } = this.state;
-  //   const { key } = Object.values(Steps)[step];
-  //   this.setState(prevState => ({ value, data: { ...prevState.data, [key]: stringToInteger(value) } }));
-  // };
-
-  // getValueForStep = (step, data) => {
-  //   const { key } = Object.values(Steps)[step];
-  //   return data[key] != null ? integerToString(data[key]) : null;
-  // };
-
   goBack = () => {
     const {step} = this.state;
     if (step > 1) {
@@ -95,22 +75,8 @@ class Questions extends Component {
     if (step < questionnairePagesCount - 1) {
       this.setState(() => ({step: step + 1, value: null}));
     } else {
-      this.props.navigation.navigate('ProblemStepResult');
+      this.props.navigation.navigate('StepResult');
     }
-  };
-
-  checkValuesForUnlockButton = obj => {
-    let result = false;
-
-    const keys = Object.keys(obj);
-    for (const key of keys) {
-      if (obj[key]) {
-        result = true;
-        break;
-      }
-    }
-
-    return result;
   };
 
   validate = () => {
