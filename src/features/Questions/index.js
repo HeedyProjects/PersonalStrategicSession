@@ -15,10 +15,10 @@ import {FullWidthButton} from './components/FullWidthButton';
 import StepInfo from './components/StepInfo';
 
 import {styles} from './styles';
+import {getQuestionsByPhase} from './questions';
+import {SESSION_MODE} from '../../reducers/sessions.duck';
 
 const {width} = Dimensions.get('window');
-
-const questionnairePagesCount = 6;
 
 class Questions extends Component {
   constructor(props) {
@@ -30,6 +30,8 @@ class Questions extends Component {
       step: 1,
       measure: null,
       answers: [],
+      data: [{title: '', body: ''}],
+      questionsCount: 0,
     };
   }
 
@@ -41,9 +43,17 @@ class Questions extends Component {
       Keyboard.addListener('keyboardDidShow', this.onKeyboardShow);
       Keyboard.addListener('keyboardDidHide', this.onKeyboardHide);
     }
+
+    const problemMode = this.props.sessionMode === SESSION_MODE.problem;
+    const data = getQuestionsByPhase(
+      this.props.phase,
+      problemMode,
+      this.props.language,
+    );
+    this.setState({data, questionsCount: data.length});
   }
 
-  componentDidUnmount() {
+  componentWillUnmount() {
     if (Platform.OS === 'ios') {
       Keyboard.removeListener('keyboardWillShow', this.onKeyboardShow);
       Keyboard.removeListener('keyboardWillHide', this.onKeyboardHide);
@@ -71,8 +81,8 @@ class Questions extends Component {
   };
 
   goNext = () => {
-    const {step} = this.state;
-    if (step < questionnairePagesCount - 1) {
+    const {step, questionsCount} = this.state;
+    if (step < questionsCount - 1) {
       this.setState(() => ({step: step + 1, value: null}));
     } else {
       this.props.navigation.navigate('StepResult');
@@ -125,17 +135,17 @@ class Questions extends Component {
   }
 
   render() {
-    const {step} = this.state;
+    const {step, data, questionsCount} = this.state;
     return (
       <View style={styles.safeAreaViewContainer}>
         <View style={styles.questionnaireMainView}>
-          <ProgressBar step={step / (questionnairePagesCount - 1)} />
+          <ProgressBar step={step / (questionsCount - 1)} />
           <StepHeader
             step={step}
-            totalSteps={questionnairePagesCount - 1}
+            totalSteps={questionsCount - 1}
             onBack={this.goBack}
           />
-          <StepInfo step={step} />
+          <StepInfo step={step} data={data} />
           {this.renderInput()}
           {this.renderNextButton()}
         </View>
@@ -146,7 +156,9 @@ class Questions extends Component {
 
 const mapStateToProps = state => {
   return {
+    language: state.language.currentLanguage,
     sessionMode: state.sessions.sessionMode,
+    phase: state.sessions.phase,
   };
 };
 

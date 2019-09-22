@@ -12,7 +12,8 @@ import {goToNextPhase} from '../../reducers/sessions.duck';
 
 class StepResult extends Component {
   continue = () => {
-    this.props.goToNextPhase(this.props.phase + 1);
+    const phase = this.props.phase ? this.props.phase + 1 : 1;
+    this.props.goToNextPhase(phase);
     this.props.navigation.navigate('Questions');
   };
 

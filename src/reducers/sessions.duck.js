@@ -34,6 +34,6 @@ export const startSession = sessionMode => ({
 });
 
 export const goToNextPhase = phase => ({
-  type: START_SESSION,
+  type: NEXT_PHASE,
   props: {phase},
 });

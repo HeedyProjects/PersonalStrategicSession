@@ -39,7 +39,7 @@ const LocalizedStrings = {
       step5Title:
         'Or even make your problem stronger? What you will stop doing?',
       endTitle:
-        'We congratulate you for finishing the first part of this strategic session! 🎉/nNext part - Define the future',
+        'We congratulate you for finishing the first part of this strategic session! 🎉\nNext part - Define the future',
     },
     futureSteps: {
       step1Header:
@@ -64,7 +64,7 @@ const LocalizedStrings = {
         'Which good opportunities do you have around you or some that you just hear about?',
       step7Title: 'What are the main components of the result?',
       endTitle:
-        'We congratulate you for finishing the second part of this strategic session! 🎉/nNext part - Schedule the plan',
+        'We congratulate you for finishing the second part of this strategic session! 🎉\nNext part - Schedule the plan',
     },
     planSteps: {
       step1Header: 'When you want to achieve main parts of your result?',

@@ -7,11 +7,16 @@ import {styles} from './styles';
 
 import {getLocalizedStrings} from '../../localization';
 import {LOCALIZE_CATEGORIES} from '../../localization/const';
-import {startSession, SESSION_MODE} from '../../reducers/sessions.duck';
+import {
+  startSession,
+  SESSION_MODE,
+  goToNextPhase,
+} from '../../reducers/sessions.duck';
 
 class StartScreen extends Component {
   startWithProblem = () => {
     this.props.startSession(SESSION_MODE.problem);
+    this.props.goToNextPhase(0);
     this.props.navigation.navigate('Questions');
   };
 
@@ -55,6 +60,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   startSession: mode => dispatch(startSession(mode)),
+  goToNextPhase: phase => dispatch(goToNextPhase(phase)),
 });
 
 export default connect(
