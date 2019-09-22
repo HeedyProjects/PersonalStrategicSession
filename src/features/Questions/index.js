@@ -16,7 +16,7 @@ import StepInfo from './components/StepInfo';
 
 import {styles} from './styles';
 import {getQuestionsByPhase} from './questions';
-import {SESSION_MODE} from '../../reducers/sessions.duck';
+import {SESSION_MODE, saveAnswer} from '../../reducers/sessions.duck';
 
 const {width} = Dimensions.get('window');
 
@@ -74,7 +74,7 @@ class Questions extends Component {
   goBack = () => {
     const {step} = this.state;
     if (step > 1) {
-      this.setState({answer: null});
+      this.setState({answer: this.props.answers[this.props.phase][step - 1]});
       this.setState({step: step - 1});
     } else {
       this.props.navigation.navigate('StartScreen');
@@ -82,9 +82,11 @@ class Questions extends Component {
   };
 
   goNext = () => {
-    const {step, questionsCount} = this.state;
+    const {step, questionsCount, answer} = this.state;
+    this.props.saveAnswer(this.props.phase, step, answer);
     if (step < questionsCount - 1) {
-      this.setState(() => ({step: step + 1, answer: null}));
+      const nextAnswer = this.props.answers[this.props.phase][step + 1];
+      this.setState(() => ({step: step + 1, answer: nextAnswer}));
     } else {
       this.props.navigation.navigate('StepResult');
     }
@@ -103,7 +105,8 @@ class Questions extends Component {
   renderInputString() {
     const {answer, measure, keyboardHeight} = this.state;
     return (
-      <View style={[styles.questionnaireView, {marginBottom: 60 + keyboardHeight}]}>
+      <View
+        style={[styles.questionnaireView, {marginBottom: 60 + keyboardHeight}]}>
         <TextInput
           multiline
           ref={ref => {
@@ -131,7 +134,7 @@ class Questions extends Component {
     return (
       <FullWidthButton
         title="Далее"
-        onPress={this.goNext}
+        onPress={() => this.goNext()}
         keyboardHeight={keyboardHeight}
         width={width}
         disabled={!this.validate()}
@@ -164,10 +167,16 @@ const mapStateToProps = state => {
     language: state.language.currentLanguage,
     sessionMode: state.sessions.sessionMode,
     phase: state.sessions.phase,
+    answers: state.sessions.answers,
   };
 };
 
+const mapDispatchToProps = dispatch => ({
+  saveAnswer: (phase, step, answer) =>
+    dispatch(saveAnswer(phase, step, answer)),
+});
+
 export default connect(
   mapStateToProps,
-  null,
+  mapDispatchToProps,
 )(Questions);

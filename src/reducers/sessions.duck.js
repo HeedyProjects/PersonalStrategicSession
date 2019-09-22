@@ -1,14 +1,20 @@
 const START_SESSION = 'YouCanDoIt/sessions/START_SESSION';
 const NEXT_PHASE = 'YouCanDoIt/sessions/NEXT_PHASE';
+const ANSWER_SENDED = 'YouCanDoIt/sessions/ANSWER_SENDED';
 
 export const SESSION_MODE = {
   problem: 0,
   goal: 1,
-  phase: 0,
 };
 
 const defaultState = {
   sessionMode: SESSION_MODE.problem,
+  phase: 0,
+  answers: {
+    0: [],
+    1: [],
+    2: [],
+  },
 };
 
 export default function reducer(state = defaultState, action) {
@@ -23,10 +29,20 @@ export default function reducer(state = defaultState, action) {
         ...state,
         phase: action.props.phase,
       };
+    case ANSWER_SENDED:
+      return {
+        ...state,
+        answers: updatedAnswer(action.props, state.answers),
+      };
     default:
       return state;
   }
 }
+
+const updatedAnswer = (props, answers) => {
+  answers[props.phase][props.step] = props.answer;
+  return answers;
+};
 
 export const startSession = sessionMode => ({
   type: START_SESSION,
@@ -36,4 +52,9 @@ export const startSession = sessionMode => ({
 export const goToNextPhase = phase => ({
   type: NEXT_PHASE,
   props: {phase},
+});
+
+export const saveAnswer = (phase, step, answer) => ({
+  type: ANSWER_SENDED,
+  props: {phase, step, answer},
 });
