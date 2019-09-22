@@ -10,14 +10,19 @@ import {LOCALIZE_CATEGORIES} from '../../localization/const';
 
 import {goToNextPhase} from '../../reducers/sessions.duck';
 
+import {sendAnalyticEvent} from '../../services/Analytics';
+import {ANALYTIC_EVENT} from '../../services/Analytics/const';
+
 class StepResult extends Component {
   continue = () => {
     const phase = this.props.phase ? this.props.phase + 1 : 1;
     this.props.goToNextPhase(phase);
+    sendAnalyticEvent(ANALYTIC_EVENT.startNewPhase);
     this.props.navigation.navigate('Questions');
   };
 
   schedule = () => {
+    sendAnalyticEvent(ANALYTIC_EVENT.schedule);
     const message = getLocalizedStrings(
       this.props.language,
       LOCALIZE_CATEGORIES.common,

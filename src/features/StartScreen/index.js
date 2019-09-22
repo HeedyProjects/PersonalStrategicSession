@@ -13,15 +13,20 @@ import {
   goToNextPhase,
 } from '../../reducers/sessions.duck';
 
+import {sendAnalyticEvent} from '../../services/Analytics';
+import {ANALYTIC_EVENT} from '../../services/Analytics/const';
+
 class StartScreen extends Component {
   startWithProblem = () => {
     this.props.startSession(SESSION_MODE.problem);
     this.props.goToNextPhase(0);
+    sendAnalyticEvent(ANALYTIC_EVENT.problem);
     this.props.navigation.navigate('Questions');
   };
 
   startWithGoal = () => {
     this.props.startSession(SESSION_MODE.goal);
+    sendAnalyticEvent(ANALYTIC_EVENT.goal);
     this.props.navigation.navigate('Questions');
   };
 

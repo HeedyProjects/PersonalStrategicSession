@@ -8,6 +8,7 @@ import {
   Platform,
 } from 'react-native';
 import {connect} from 'react-redux';
+import firebase from 'react-native-firebase';
 
 import {ProgressBar} from './components/ProgressBar';
 import {StepHeader} from './components/StepHeader';
@@ -17,6 +18,9 @@ import StepInfo from './components/StepInfo';
 import {styles} from './styles';
 import {getQuestionsByPhase} from './questions';
 import {SESSION_MODE, saveAnswer} from '../../reducers/sessions.duck';
+
+import {sendAnalyticEvent} from '../../services/Analytics';
+import {ANALYTIC_EVENT} from '../../services/Analytics/const';
 
 const {width} = Dimensions.get('window');
 
@@ -73,6 +77,7 @@ class Questions extends Component {
 
   goBack = () => {
     const {step} = this.state;
+    sendAnalyticEvent(ANALYTIC_EVENT.backStep);
     if (step > 1) {
       this.setState({answer: this.props.answers[this.props.phase][step - 1]});
       this.setState({step: step - 1});
@@ -83,13 +88,23 @@ class Questions extends Component {
 
   goNext = () => {
     const {step, questionsCount, answer} = this.state;
+    sendAnalyticEvent(ANALYTIC_EVENT.nextStep);
     this.props.saveAnswer(this.props.phase, step, answer);
+    this.saveAnswersToFirebase(answer);
     if (step < questionsCount - 1) {
       const nextAnswer = this.props.answers[this.props.phase][step + 1];
       this.setState(() => ({step: step + 1, answer: nextAnswer}));
     } else {
       this.props.navigation.navigate('StepResult');
     }
+  };
+
+  saveAnswersToFirebase = answer => {
+    const ref = firebase.firestore().collection('sessions');
+    ref.doc(this.props.uid).set({
+      answers: this.props.answers,
+      newAnswer: answer,
+    });
   };
 
   validate = () => {
@@ -168,6 +183,7 @@ const mapStateToProps = state => {
     sessionMode: state.sessions.sessionMode,
     phase: state.sessions.phase,
     answers: state.sessions.answers,
+    uid: state.sessions.uid,
   };
 };
 
