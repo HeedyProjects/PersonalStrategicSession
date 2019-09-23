@@ -103,7 +103,8 @@ class Questions extends Component {
     const ref = firebase.firestore().collection('sessions');
     ref.doc(this.props.uid).set({
       answers: this.props.answers,
-      newAnswer: answer,
+      lastAnswer: answer,
+      sessionMode: this.props.sessionMode,
     });
   };
 
