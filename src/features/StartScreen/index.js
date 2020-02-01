@@ -18,6 +18,7 @@ import {ANALYTIC_EVENT} from '../../services/Analytics/const';
 
 class StartScreen extends Component {
   startWithProblem = () => {
+    console.log('Problem choosen');
     this.props.startSession(SESSION_MODE.problem);
     this.props.goToNextPhase(0);
     sendAnalyticEvent(ANALYTIC_EVENT.problem);
