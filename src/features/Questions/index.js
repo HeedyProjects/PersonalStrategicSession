@@ -43,11 +43,7 @@ class Questions extends Component {
     if (Platform.OS === 'ios') {
       Keyboard.addListener('keyboardWillShow', this.onKeyboardShow);
       Keyboard.addListener('keyboardWillHide', this.onKeyboardHide);
-    } else {
-      Keyboard.addListener('keyboardDidShow', this.onKeyboardShow);
-      Keyboard.addListener('keyboardDidHide', this.onKeyboardHide);
     }
-
     const problemMode = this.props.sessionMode === SESSION_MODE.problem;
     const data = getQuestionsByPhase(
       this.props.phase,
@@ -61,9 +57,6 @@ class Questions extends Component {
     if (Platform.OS === 'ios') {
       Keyboard.removeListener('keyboardWillShow', this.onKeyboardShow);
       Keyboard.removeListener('keyboardWillHide', this.onKeyboardHide);
-    } else {
-      Keyboard.removeListener('keyboardDidShow', this.onKeyboardShow);
-      Keyboard.removeListener('keyboardDidHide', this.onKeyboardHide);
     }
   }
 

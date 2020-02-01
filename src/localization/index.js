@@ -99,7 +99,7 @@ const LocalizedStrings = {
       step: 'Шаг',
       from: 'из',
       resultText:
-        'We congratulate you for finishing the first part of this strategic session! 🎉\nNext part - Define the future'
+        'Поздравляем с завершением первого этапа стратегической сессии!🎉\nСледующая часть - определение будущего.'
     },
     problemSteps: {
       step1HeaderGoal: 'Чего ты хочешь достичь?',
