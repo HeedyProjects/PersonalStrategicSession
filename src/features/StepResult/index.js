@@ -15,7 +15,10 @@ import {ANALYTIC_EVENT} from '../../services/Analytics/const';
 
 class StepResult extends Component {
   continue = () => {
-    const phase = this.props.phase ? this.props.phase + 1 : 1;
+    let {phase = 1} = this.props;
+    const {answers = {}} = this.props;
+    const phasesLength = Object.keys(answers).length - 1 || 3;
+    phase = phase === phasesLength ? 0 : phase;
     this.props.goToNextPhase(phase);
     sendAnalyticEvent(ANALYTIC_EVENT.startNewPhase);
     this.props.navigation.navigate('Questions');
@@ -89,6 +92,7 @@ const mapStateToProps = state => {
   return {
     language: state.language.currentLanguage,
     phase: state.sessions.phase,
+    answers: state.sessions.answers,
   };
 };
 
@@ -96,7 +100,4 @@ const mapDispatchToProps = dispatch => ({
   goToNextPhase: phase => dispatch(goToNextPhase(phase)),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(StepResult);
+export default connect(mapStateToProps, mapDispatchToProps)(StepResult);
