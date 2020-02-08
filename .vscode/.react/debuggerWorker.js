@@ -3,18 +3,19 @@
 var onmessage=null, self=global;
 // Cache Node's original require as __debug__.require
 global.__debug__={require: require};
-// avoid Node's GLOBAL deprecation warning
-Object.defineProperty(global, "GLOBAL", {
-    configurable: true,
-    writable: true,
-    enumerable: true,
-    value: global
-});
 // Prevent leaking process.versions from debugger process to
 // worker because pure React Native doesn't do that and some packages as js-md5 rely on this behavior
 Object.defineProperty(process, "versions", {
     value: undefined
 });
+// TODO: Replace by url.fileURLToPath method when Node 10 LTS become deprecated
+function fileUrlToPath(url) {
+  if (process.platform === 'win32') {
+      return url.toString().replace('file:///', '');
+  } else {
+    return url.toString().replace('file://', '');
+  }
+}
 function getNativeModules() {
     var NativeModules;
     try {
@@ -29,7 +30,7 @@ function getNativeModules() {
             for (var i = 0; i < ids.length; i++) {
               if (modules[ids[i]].verboseName) {
                  var packagePath = new String(modules[ids[i]].verboseName);
-                 if (packagePath.indexOf("react-native/Libraries/BatchedBridge/NativeModules.js") > 0) {
+                 if (packagePath.indexOf('react-native/Libraries/BatchedBridge/NativeModules.js') > 0) {
                    nativeModuleId = parseInt(ids[i], 10);
                    break;
                  }
@@ -76,10 +77,14 @@ if (!self.postMessage) {
 var importScripts = (function(){
     var fs=require('fs'), vm=require('vm');
     return function(scriptUrl){
-        var scriptCode = fs.readFileSync(scriptUrl, "utf8");
-        vm.runInThisContext(scriptCode, {filename: scriptUrl});
+        scriptUrl = fileUrlToPath(scriptUrl);
+        var scriptCode = fs.readFileSync(scriptUrl, 'utf8');
+        // Add a 'debugger;' statement to stop code execution
+        // to wait for the sourcemaps to be processed by the debug adapter
+        vm.runInThisContext('debugger;' + scriptCode, {filename: scriptUrl});
     };
 })();
+
 // Worker is ran as nodejs process, so console.trace() writes to stderr and it leads to error in native app
 // To avoid this console.trace() is overridden to print stacktrace via console.log()
 // Please, see Node JS implementation: https://github.com/nodejs/node/blob/master/lib/internal/console/constructor.js
@@ -99,6 +104,19 @@ console.trace = (function() {
         }
     };
 })();
+
+// As worker is ran in node, it breaks broadcast-channels package approach of identifying if it’s ran in node:
+// https://github.com/pubkey/broadcast-channel/blob/master/src/util.js#L64
+// To avoid it if process.toString() is called if will return empty string instead of [object process].
+var nativeObjectToString = Object.prototype.toString;
+Object.prototype.toString = function() {
+    if (this === process) {
+        return '';
+    } else {
+        return nativeObjectToString.call(this);
+    }
+};
+
 
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
