@@ -6,6 +6,7 @@ const ANSWER_SENDED = 'YouCanDoIt/sessions/ANSWER_SENDED';
 export const SESSION_MODE = {
   problem: 0,
   goal: 1,
+  list: 1,
 };
 
 const defaultState = {
@@ -47,6 +48,7 @@ export default function reducer(state = defaultState, action) {
 }
 
 const updatedAnswer = (props, answers) => {
+  debugger;
   answers[props.phase][props.step] = props.answer;
   return answers;
 };

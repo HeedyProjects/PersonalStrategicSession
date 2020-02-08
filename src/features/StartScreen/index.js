@@ -29,6 +29,11 @@ class StartScreen extends Component {
     sendAnalyticEvent(ANALYTIC_EVENT.goal);
     this.props.navigation.navigate('Questions');
   };
+  startWithList = () => {
+    this.props.startSession(SESSION_MODE.list);
+    sendAnalyticEvent(ANALYTIC_EVENT.list);
+    this.props.navigation.navigate('Useranswers');
+  };
 
   render() {
     const localization = getLocalizedStrings(
@@ -50,6 +55,11 @@ class StartScreen extends Component {
             newStyle={styles.button}
             title={localization.startWithGoal}
             onPress={() => this.startWithGoal()}
+          />
+          <RoundedButton
+            newStyle={styles.button}
+            title={localization.startWithList}
+            onPress={() => this.startWithList()}
           />
         </View>
       </View>
