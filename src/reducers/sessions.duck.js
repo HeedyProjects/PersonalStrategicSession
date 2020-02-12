@@ -48,7 +48,6 @@ export default function reducer(state = defaultState, action) {
 }
 
 const updatedAnswer = (props, answers) => {
-  debugger;
   answers[props.phase][props.step] = props.answer;
   return answers;
 };
