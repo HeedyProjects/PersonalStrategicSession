@@ -18,7 +18,7 @@ class StepResult extends Component {
     let {phase = 1} = this.props;
     const {answers = {}} = this.props;
     const phasesLength = Object.keys(answers).length - 1 || 3;
-    phase = phase === phasesLength ? 0 : phase;
+    phase = phase === phasesLength ? 0 : ++phase;
     this.props.goToNextPhase(phase);
     sendAnalyticEvent(ANALYTIC_EVENT.startNewPhase);
     this.props.navigation.navigate('Questions');
