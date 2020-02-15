@@ -8,7 +8,10 @@ import {styles} from './styles';
 import {getLocalizedStrings} from '../../localization';
 import {LOCALIZE_CATEGORIES} from '../../localization/const';
 
-import {goToNextPhase} from '../../reducers/sessions.duck';
+import {
+  goToNextPhase,
+  storeFinishedSession,
+} from '../../reducers/sessions.duck';
 
 import {sendAnalyticEvent} from '../../services/Analytics';
 import {ANALYTIC_EVENT} from '../../services/Analytics/const';
@@ -17,8 +20,18 @@ class StepResult extends Component {
   continue = () => {
     let {phase = 1} = this.props;
     const {answers = {}} = this.props;
-    const phasesLength = Object.keys(answers).length - 1 || 3;
-    phase = phase === phasesLength ? 0 : ++phase;
+    const phasesLength = Object.keys(answers).length;
+    // phase's start index os 0
+    const isLastPhase = ++phase === phasesLength;
+
+    if (isLastPhase) {
+      const time = new Date();
+      this.props.storeFinishedSession(time);
+      sendAnalyticEvent(ANALYTIC_EVENT.startNewPhase);
+      this.props.navigation.navigate('Questions');
+      return;
+    }
+
     this.props.goToNextPhase(phase);
     sendAnalyticEvent(ANALYTIC_EVENT.startNewPhase);
     this.props.navigation.navigate('Questions');
@@ -98,6 +111,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   goToNextPhase: phase => dispatch(goToNextPhase(phase)),
+  storeFinishedSession: time => dispatch(storeFinishedSession(time)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StepResult);
