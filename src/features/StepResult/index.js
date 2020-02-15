@@ -21,7 +21,7 @@ class StepResult extends Component {
     let {phase = 1} = this.props;
     const {answers = {}} = this.props;
     const phasesLength = Object.keys(answers).length;
-    // phase's start index os 0
+    // phase's start index is "0".
     const isLastPhase = ++phase === phasesLength;
 
     if (isLastPhase) {
