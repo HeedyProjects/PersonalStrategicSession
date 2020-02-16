@@ -33,7 +33,7 @@ class StartScreen extends Component {
   startWithList = () => {
     this.props.startSession(SESSION_MODE.list);
     sendAnalyticEvent(ANALYTIC_EVENT.list);
-    this.props.navigation.navigate('Useranswers');
+    this.props.navigation.navigate('PrevSessions');
   };
 
   render() {
@@ -79,7 +79,4 @@ const mapDispatchToProps = dispatch => ({
   goToNextPhase: phase => dispatch(goToNextPhase(phase)),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(StartScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(StartScreen);
