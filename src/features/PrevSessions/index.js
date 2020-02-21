@@ -1,8 +1,10 @@
 import React from 'react';
-import {View, Text} from 'react-native';
 import {connect} from 'react-redux';
+import {View, Text, TouchableOpacity, Button} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {styles} from './styles';
+import {DARK_GRAY} from '../../utils/Colors';
 import {RoundedButton} from '../../common/RoundedButton';
 
 /**
@@ -10,16 +12,21 @@ import {RoundedButton} from '../../common/RoundedButton';
  * @param {String} timeStr
  * @returns {String}
  */
-function makeSessionTitle(timeStr) {
+const makeSessionTitle = timeStr => {
   const time = new Date(timeStr);
   return `${time.getDate()} ${time.getMonth() + 1} ${time.getFullYear()}`;
-}
+};
 
 function PrevSessions(props) {
   const {sessions, navigation} = props;
-  console.log(sessions);
+  const goBack = () => {
+    props.navigation.navigate('StartScreen');
+  };
   return (
     <View style={styles.container}>
+      <TouchableOpacity style={styles.backButtonStyle} onPress={() => goBack()}>
+        <Icon name="chevron-left" size={20} color={DARK_GRAY} />
+      </TouchableOpacity>
       {sessions.length > 0 ? (
         sessions.map((session, id) => (
           <Text
