@@ -45,7 +45,7 @@ export default function reducer(state = defaultState, action) {
         answers: updatedAnswer(action.props, state.answers),
       };
     case STORE_SESSION:
-      const {answers, prevSessions = []} = state;
+      const {answers, prevSessions = [], sessionMode} = state;
       const {time} = action.props;
       return {
         ...state,
@@ -55,7 +55,7 @@ export default function reducer(state = defaultState, action) {
           2: [],
         },
         phase: 0,
-        prevSessions: [].concat(prevSessions, {answers, time}),
+        prevSessions: [].concat(prevSessions, {answers, time, sessionMode}),
       };
     default:
       return state;
