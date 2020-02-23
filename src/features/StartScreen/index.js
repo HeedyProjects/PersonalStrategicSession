@@ -33,7 +33,7 @@ class StartScreen extends Component {
   startWithList = () => {
     this.props.startSession(SESSION_MODE.list);
     sendAnalyticEvent(ANALYTIC_EVENT.list);
-    this.props.navigation.navigate('PrevSessions');
+    this.props.navigation.navigate('SessionsList');
   };
 
   render() {
