@@ -5,4 +5,5 @@ export const LOCALIZE_CATEGORIES = {
   futureSteps: 'futureSteps',
   planSteps: 'planSteps',
   resultScreen: 'resultScreen',
+  sessionScreen: 'sessionScreen',
 };
