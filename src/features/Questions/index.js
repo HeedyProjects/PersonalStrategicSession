@@ -22,6 +22,9 @@ import {SESSION_MODE, saveAnswer} from '../../reducers/sessions.duck';
 import {sendAnalyticEvent} from '../../services/Analytics';
 import {ANALYTIC_EVENT} from '../../services/Analytics/const';
 
+import {getLocalizedStrings} from '../../localization';
+import {LOCALIZE_CATEGORIES} from '../../localization/const';
+
 const {width} = Dimensions.get('window');
 
 class Questions extends Component {
@@ -140,9 +143,13 @@ class Questions extends Component {
 
   renderNextButton() {
     const {keyboardHeight} = this.state;
+    const localization = getLocalizedStrings(
+      this.props.language,
+      LOCALIZE_CATEGORIES.common,
+    );
     return (
       <FullWidthButton
-        title="Далее"
+        title={localization.next}
         onPress={() => this.goNext()}
         keyboardHeight={keyboardHeight}
         width={width}
@@ -153,14 +160,17 @@ class Questions extends Component {
 
   render() {
     const {step, data, questionsCount} = this.state;
+    const localization = getLocalizedStrings(
+      this.props.language,
+      LOCALIZE_CATEGORIES.common,
+    );
+    const totalSteps = questionsCount - 1;
+    const stepTitle = `${localization.step} ${step} ${localization.from} ${totalSteps}`;
     return (
       <View style={styles.safeAreaViewContainer}>
         <View style={styles.questionnaireMainView}>
           <ProgressBar step={step / (questionsCount - 1)} />
-          <StepHeader
-            step={step}
-            totalSteps={questionsCount - 1}
-            onBack={this.goBack}
+          <StepHeader stepTitle={stepTitle} onBack={this.goBack}
           />
           <StepInfo step={step} data={data} />
           {this.renderInput()}

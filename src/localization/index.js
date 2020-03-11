@@ -2,6 +2,8 @@ const LocalizedStrings = {
   en: {
     common: {
       next: 'Next',
+      step: 'Step',
+      from: 'from',
       ok: 'Ok',
       stub: 'We will add this feature next time',
     },
@@ -15,8 +17,6 @@ const LocalizedStrings = {
     resultScreen: {
       continueNow: 'Continue now',
       scheduleTheSession: 'Schedule the session',
-      step: 'Step',
-      from: 'from',
       resultText:
         'We congratulate you for finishing the first part of this strategic session! 🎉\nNext part - Define the future',
       sendResultsToEmail: 'Send results to email',
@@ -91,6 +91,8 @@ const LocalizedStrings = {
   ru: {
     common: {
       next: 'Далее',
+      step: 'Шаг',
+      from: 'из',
       ok: 'Ok',
       stub: 'Мы добавим эту возможность позже',
     },
@@ -104,8 +106,6 @@ const LocalizedStrings = {
     resultScreen: {
       continueNow: 'Продолжить сейчас',
       scheduleTheSession: 'Запланировать сессию',
-      step: 'Шаг',
-      from: 'из',
       resultText:
         ' Мы поздравляем тебя с окончанием первой части стратегической сессии! 🎉\n Следующая часть - Определить будущее.',
       sendResultsToEmail: 'Отправить ответы на email',
