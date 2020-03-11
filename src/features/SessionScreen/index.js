@@ -45,11 +45,12 @@ class SessionScreen extends React.PureComponent {
         ) : (
           <ScrollView>
             {Object.keys(sessions[sessionID].answers).map(phase => {
-              return sessions[sessionID].answers[phase].map(
-                (answer, answerID) => {
+              return Object.keys(sessions[sessionID].answers[phase]).map(
+                answerID => {
                   if (answerID === 0) {
                     return;
                   }
+                  const answer = sessions[sessionID].answers[phase][answerID];
                   const questions = getQuestionsByPhase(
                     Number(phase),
                     sessions[sessionID].sessionMode,

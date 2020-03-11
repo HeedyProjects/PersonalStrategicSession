@@ -20,7 +20,6 @@ import {getQuestionsByPhase} from '../Questions/questions';
 import {sendEmail} from '../../utils/sendEmail';
 
 class StepResult extends Component {
-
   componentDidMount = () => {
     let {phase} = this.props;
     const {answers} = this.props;
