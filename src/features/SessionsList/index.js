@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {styles} from './styles';
@@ -31,7 +31,7 @@ class SessionsList extends React.PureComponent {
           onPress={() => this.goTo('StartScreen')}>
           <Icon name="chevron-left" size={20} color={DARK_GRAY} />
         </TouchableOpacity>
-        <View style={styles.buttonContainer}>
+        <ScrollView style={styles.buttonContainer}>
           {this.props.sessions.length > 0 ? (
             this.props.sessions.map((session, id) => (
               <RoundedButton
@@ -44,7 +44,7 @@ class SessionsList extends React.PureComponent {
           ) : (
             <Text>Sessions doesn't exist</Text>
           )}
-        </View>
+        </ScrollView>
       </View>
     );
   }
