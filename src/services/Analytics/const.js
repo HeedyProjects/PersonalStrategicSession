@@ -7,4 +7,5 @@ export const ANALYTIC_EVENT = {
   backStep: 'backStep',
   startNewPhase: 'startNewPhase',
   schedule: 'schedule',
+  sessionCompleted: 'sessionCompleted',
 };

@@ -3,6 +3,7 @@ const START_SESSION = 'YouCanDoIt/sessions/START_SESSION';
 const NEXT_PHASE = 'YouCanDoIt/sessions/NEXT_PHASE';
 const ANSWER_SENDED = 'YouCanDoIt/sessions/ANSWER_SENDED';
 const STORE_SESSION = 'YouCanDoIt/sessions/STORE_SESSION';
+const CLEAR_SESSION = 'YouCanDoIt/sessions/CLEAR_SESSION';
 
 export const SESSION_MODE = {
   problem: 0,
@@ -15,9 +16,9 @@ const defaultState = {
   phase: 0,
   uid: null,
   answers: {
-    0: [],
-    1: [],
-    2: [],
+    0: {},
+    1: {},
+    2: {},
   },
   prevSessions: [],
 };
@@ -49,13 +50,16 @@ export default function reducer(state = defaultState, action) {
       const {time} = action.props;
       return {
         ...state,
-        answers: {
-          0: [],
-          1: [],
-          2: [],
-        },
-        phase: 0,
         prevSessions: [].concat(prevSessions, {answers, time, sessionMode}),
+      };
+    case CLEAR_SESSION:
+      return {
+        ...state,
+        answers: {
+          0: {},
+          1: {},
+          2: {},
+        },
       };
     default:
       return state;
@@ -90,4 +94,8 @@ export const saveAnswer = (phase, step, answer) => ({
 export const storeFinishedSession = time => ({
   type: STORE_SESSION,
   props: {time},
+});
+
+export const clearSession = () => ({
+  type: CLEAR_SESSION,
 });

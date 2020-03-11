@@ -10,7 +10,7 @@ const LocalizedStrings = {
         'Hello!\nYour journey starts here.\nDon’t hesitate to start right now. It will take just few minutes.',
       startWithProblem: 'Start with problem',
       startWithGoal: 'Start with goal',
-      startWithList: 'Start with list',
+      startWithList: 'My sessions',
     },
     resultScreen: {
       continueNow: 'Continue now',
@@ -19,6 +19,9 @@ const LocalizedStrings = {
       from: 'from',
       resultText:
         'We congratulate you for finishing the first part of this strategic session! 🎉\nNext part - Define the future',
+      sendResultsToEmail: 'Send results to email',
+      startNewSession: 'Start new session',
+      sessionResults: 'YouCanDoIt: session results',
     },
     problemSteps: {
       step1HeaderGoal: 'What do you want to achieve?',
@@ -94,9 +97,9 @@ const LocalizedStrings = {
     startScreen: {
       helloText:
         ' Привет! Сейчас мы решим все твои заботы. Не откладывай на завтра то, что можно сделать сегодня. Это займет всего несколько минут.',
-      startWithProblem: ' Хочу решить проблему',
-      startWithGoal: ' Хочу достичь цели',
-      startWithList: ' Открыть список',
+      startWithProblem: 'Хочу решить проблему',
+      startWithGoal: 'Хочу достичь цели',
+      startWithList: 'Мои сессии',
     },
     resultScreen: {
       continueNow: 'Продолжить сейчас',
@@ -105,6 +108,9 @@ const LocalizedStrings = {
       from: 'из',
       resultText:
         ' Мы поздравляем тебя с окончанием первой части стратегической сессии! 🎉\n Следующая часть - Определить будущее.',
+      sendResultsToEmail: 'Отправить ответы на email',
+      startNewSession: 'Начать новую сессию',
+      sessionResults: 'Результаты стратегической сессии',
     },
     problemSteps: {
       step1HeaderGoal: ' Чего ты хочешь достичь?',
