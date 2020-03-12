@@ -31,7 +31,7 @@ class SessionsList extends React.PureComponent {
           onPress={() => this.goTo('StartScreen')}>
           <Icon name="chevron-left" size={20} color={DARK_GRAY} />
         </TouchableOpacity>
-        <ScrollView style={styles.buttonContainer}>
+        <ScrollView contentContainerStyle={styles.buttonContainer}>
           {this.props.sessions.length > 0 ? (
             this.props.sessions.map((session, id) => (
               <RoundedButton
