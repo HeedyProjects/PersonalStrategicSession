@@ -10,7 +10,7 @@ const LocalizedStrings = {
     startScreen: {
       helloText:
         'Hello!\nYour journey starts here.\nDon’t hesitate to start right now. It will take just few minutes.',
-      startWithProblem: 'Start with problem',
+      startWithProblem: 'Start with issue',
       startWithGoal: 'Start with goal',
       startWithList: 'My sessions',
     },
@@ -25,23 +25,21 @@ const LocalizedStrings = {
     },
     problemSteps: {
       step1HeaderGoal: 'What do you want to achieve?',
-      step1HeaderProblem: 'What problem do you want to overcome?',
+      step1HeaderProblem: 'What issue do you want to overcome?',
       step1Title: '',
       step2Header:
-        'What time and week day will it be easy for you to work on this goal/problem?',
+        'What time and week day will it be easy for you to work on this goal/issue?',
       step2Title:
         'It will be great when you will achieve this. I hope we will celebrate it together 😉 Start your strategic session right now. Set up time for your session.',
       step3Header: 'Please introduce yourself. What role do you play in life?',
       step3TitleGoal: 'What role will you play to achieve your goal?',
-      step3TitleProblem:
-        'What role will you play to compete with this problem?',
+      step3TitleProblem: 'What role will you play to compete with this issue?',
       step4Header: 'Why are you here?',
       step4TitleGoal:
         'What problem do you have right now that prevents you from achieving your goal?',
       step4TitleProblem: 'What goal do you have in this role?',
       step5Header: 'What actions slow you down on the way to your goal?',
-      step5Title:
-        'Or even make your problem stronger? What you will stop doing?',
+      step5Title: 'Or even make your issue stronger? What you will stop doing?',
       endTitle:
         'We congratulate you for finishing the first part of this strategic session! 🎉\nNext part - Define the future',
     },
