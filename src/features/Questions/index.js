@@ -73,7 +73,7 @@ class Questions extends Component {
 
   goBack = () => {
     const {step} = this.state;
-    sendAnalyticEvent(ANALYTIC_EVENT.backStep);
+    sendAnalyticEvent(ANALYTIC_EVENT.backStep, {step});
     if (step > 1) {
       this.setState({answer: this.props.answers[this.props.phase][step - 1]});
       this.setState({step: step - 1});
@@ -84,7 +84,7 @@ class Questions extends Component {
 
   goNext = () => {
     const {step, questionsCount, answer} = this.state;
-    sendAnalyticEvent(ANALYTIC_EVENT.nextStep);
+    sendAnalyticEvent(ANALYTIC_EVENT.nextStep, {step});
     this.props.saveAnswer(this.props.phase, step, answer);
     this.saveAnswersToFirebase(answer);
     if (step < questionsCount - 1) {
@@ -170,8 +170,7 @@ class Questions extends Component {
       <View style={styles.safeAreaViewContainer}>
         <View style={styles.questionnaireMainView}>
           <ProgressBar step={step / (questionsCount - 1)} />
-          <StepHeader stepTitle={stepTitle} onBack={this.goBack}
-          />
+          <StepHeader stepTitle={stepTitle} onBack={this.goBack} />
           <StepInfo step={step} data={data} />
           {this.renderInput()}
           {this.renderNextButton()}
@@ -196,7 +195,4 @@ const mapDispatchToProps = dispatch => ({
     dispatch(saveAnswer(phase, step, answer)),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Questions);
+export default connect(mapStateToProps, mapDispatchToProps)(Questions);

@@ -37,13 +37,14 @@ class StepResult extends Component {
 
   continue = () => {
     let {phase} = this.props;
-    this.props.goToNextPhase(++phase);
-    sendAnalyticEvent(ANALYTIC_EVENT.startNewPhase);
+    const newPhase = phase + 1;
+    this.props.goToNextPhase(newPhase);
+    sendAnalyticEvent(ANALYTIC_EVENT.startNewPhase, {phase: newPhase});
     this.props.navigation.navigate('Questions');
   };
 
   schedule = () => {
-    sendAnalyticEvent(ANALYTIC_EVENT.schedule);
+    sendAnalyticEvent(ANALYTIC_EVENT.schedule, {phase: this.props.phase});
     const message = getLocalizedStrings(
       this.props.language,
       LOCALIZE_CATEGORIES.common,
@@ -166,7 +167,4 @@ const mapDispatchToProps = dispatch => ({
   clearSession: () => dispatch(clearSession()),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(StepResult);
+export default connect(mapStateToProps, mapDispatchToProps)(StepResult);
